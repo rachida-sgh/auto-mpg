@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
-from src.data.utilities import data_path
+from src.data.utils import data_path
 
 
 from sklearn.impute import SimpleImputer
