@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
-from src.data.utils import data_path
+from src.data.utils import data_path, split_features_target
 
 
 from sklearn.impute import SimpleImputer
@@ -53,27 +53,33 @@ def get_interim_data(dataset):
     return pd.read_csv(filepath)
 
 
-def make_final_train_set():
+def make_final_sets():
     df_train = get_interim_data("train")
-    X_train = df_train.drop("mpg", axis=1)
-    y_train = df_train["mpg"]
+    df_test = get_interim_data("test")
+    X_train, y_train = split_features_target(df_train, "mpg")
+    X_test, y_test = split_features_target(df_test, "mpg")
 
     full_pipeline = make_final_transformation_pipe()
     X_train_processed_values = full_pipeline.fit_transform(X_train)
-
+    X_test_processed_values = full_pipeline.transform(X_test)
     # Add columns names to build the processed dataframe
     region_ohe_features = list(
         full_pipeline.named_transformers_["nom"].get_feature_names()
     )
     column_names = CONTINUOUS_FEATURES + ORDINAL_FEATURES + region_ohe_features
     X_train_processed = pd.DataFrame(X_train_processed_values, columns=column_names)
+    X_test_processed = pd.DataFrame(X_test_processed_values, columns=column_names)
 
     # Drop one of the ohe features to limit correlations in the data set
-    X_train_processed.drop("x0_EUROPE", axis=1, inplace=True)
+    for df in (X_train_processed, X_test_processed):
+        df.drop("x0_EUROPE", axis=1, inplace=True)
 
     # Save the data
     df_train_processed = X_train_processed.join(y_train)
     df_train_processed.to_csv(data_path("processed", "df_train_processed.csv"))
 
-    return column_names, full_pipeline, df_train_processed
+    df_test_processsed = X_test_processed.join(y_test)
+    df_test_processsed.to_csv(data_path("processed", "df_test_processed.csv"))
+
+    return df_train_processed, df_test_processsed
 
