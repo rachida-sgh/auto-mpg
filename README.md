@@ -1,7 +1,32 @@
-auto-mpg
-==============================
+Gas Mileage Prediction
+============================== 
+For this regression problem, the objective is to predict the fuel consumption in MPG (miles per gallon) using multiple features of an automobile. 
 
-ml project
+Such a model can be used during the design process of cars case fuel consumption is a determinant factor to assess different designs and configurations. 
+
+## Data Set
+
+The data set comes from the UCI [Machine Learning Repository](https://archive.ics.uci.edu/ml/) and can be downloaded [here](https://archive.ics.uci.edu/ml/datasets/auto+mpg).
+
+The dataset is small (398 instances and 8 features). Yet, it is rich in terms of features types. 
+
+- cylinders: numerical discrete
+- displacement: continuous
+- horsepower: conitnous
+- weight: continuous
+- acceleration: continuous
+- model year: numerical discrete
+- origin: numerical discrete
+- car name: string (unique for each instance) 
+
+ ## Approach Summary and Results 
+
+After extensive data exploration and cleaning, I preprocessed original features and used them to train a Random Forest model.
+
+I used Random Search Cross-Validation to tune the hyperparameters. The weight of the car is the number one predictor for its fuel consumption.
+
+The RMSE (Root Mean Squared Error) score for the selected model is 2.29 MPG with a 95% confidence interval [1.84, 2.67]. R2 score is 0.90.
+
 
 Project Organization
 ------------
