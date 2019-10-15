@@ -56,5 +56,5 @@ def get_clean_dataset():
     df["horsepower"] = pd.to_numeric(df["horsepower"], errors="coerce")
     correct_company_names(df)
     get_region_names(df)
-    df.to_csv(data_path("interim", "data_cleaned.csv"))
+    df.to_pickle(data_path("interim", "data_cleaned.pkl"))
     return df
