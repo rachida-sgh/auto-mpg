@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
-from src.data.utils import data_path, split_features_target
+from src.utils import data_path, split_features_target
 
 
 from sklearn.impute import SimpleImputer
@@ -76,10 +76,9 @@ def make_final_sets():
 
     # Save the data
     df_train_processed = X_train_processed.join(y_train)
-    df_train_processed.to_csv(data_path("processed", "df_train_processed.csv"))
+    df_train_processed.to_csv(data_path("processed", "train_processed.pkl"))
 
     df_test_processsed = X_test_processed.join(y_test)
-    df_test_processsed.to_csv(data_path("processed", "df_test_processed.csv"))
+    df_test_processsed.to_csv(data_path("processed", "test_processed.pkl"))
 
     return df_train_processed, df_test_processsed
-
