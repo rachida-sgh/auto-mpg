@@ -4,7 +4,7 @@ import os
 from src.utils import data_path
 
 
-def load_raw_data(file_name):
+def load_raw_data(file_name="auto-mpg.data"):
     file_path = data_path("raw", file_name)
     return pd.read_csv(
         file_path,
