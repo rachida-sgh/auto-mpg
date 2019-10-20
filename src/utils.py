@@ -4,35 +4,37 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
 
-ROOT_DIR = ".."
+ROOT_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)), "..")
+DATASET_URL = "https://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data"
 
 
 def data_path(*path):
-    this_dir = os.path.realpath(os.path.dirname(__file__))
-    return os.path.join(this_dir, "..", "data", *path)
+    return os.path.join(ROOT_DIR, "data", *path)
 
 
 def download_data(file_name="auto-mpg.data"):
-    raw_data_dir = os.path.join(ROOT_DIR, "data", "raw")
+    raw_data_dir = data_path("raw")
     os.makedirs(raw_data_dir, exist_ok=True)
-    file_path = data_path("raw", file_name)
-    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data"
-    urllib.request.urlretrieve(url, file_path)
-    print("downloading data to", os.path.join(raw_data_dir, "auto-mpg.data"))
+    
+    target = os.path.join(raw_data_dir, file_name)
+    print("downloading data to", target)
+    urllib.request.urlretrieve(DATASET_URL, target)
 
 
 def save_data(df, data_state, file_name):
-    data_dir = os.path.join(ROOT_DIR, "data", data_state)
+    data_dir = data_path(data_state)
     os.makedirs(data_dir, exist_ok=True)
     df.to_pickle(os.path.join(data_dir, file_name))
-    
+
+
 def pickle_model(model, model_path):
     model_dir = os.path.join(ROOT_DIR, "model")
     os.makedirs(model_dir, exist_ok=True)
-    
+
     with open(os.path.join(model_dir, model_path), "wb") as f:
         pickle.dump(model, f)
-        
+
+
 def load_model(model_path):
     full_model_path = os.path.join(ROOT_DIR, "model", model_path)
     with open(full_model_path, "rb") as file:
