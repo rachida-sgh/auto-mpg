@@ -15,7 +15,7 @@ The dataset is small (398 instances and 8 features). Yet, it is rich in terms of
 
 - cylinders: numerical discrete
 - displacement (engine size): continuous
-- horsepower: conitnous
+- horsepower: continuous
 - weight: continuous
 - acceleration: continuous
 - model year: numerical discrete
@@ -24,12 +24,13 @@ The dataset is small (398 instances and 8 features). Yet, it is rich in terms of
 
  ## Approach Summary and Results 
 
-After extensive data exploration and cleaning, we preprocessed original features and used them to train a Random Forest model.
+After data exploration and cleaning, we preprocessed original features and used them to train a Random Forest model.
 
-We used Random Search Cross-Validation to tune the hyperparameters. The the weight of the car and the size of its engine are the most importante features to predict the fuel consumption accorfing the the Random Forest model.
+We used Random Search Cross-Validation to tune the hyperparameters. The weight of the car and the size of its engine are the most important features to predict the fuel consumption according to the Random Forest model.
 
 The __RMSE__ (Root Mean Squared Error) score for the selected model is __2.27 MPG__ with a __95% confidence interval [1.82, 2.65]__.
 
+The Jupyter notebooks will walk you through each step of the process. They are intended to be self-explanatory. 
 
 Project Organization
 ------------
@@ -39,9 +40,9 @@ The project organisation is based on a minimalistic version of the [cookiecutter
     ├── LICENSE
     ├── README.md          <- The top-level README.
     ├── data
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
+    │   ├── interim        <- Intermediate data that has been transformed.
+    │   ├── processed      <- The final, canonical data sets for modeling.
+    │   └── raw            <- The original, immutable data dump.
     ├── models             <- Trained and serialized models
     ├── notebooks          <- Project walkthough in the form of sequenced Jupyter notebooks. 
     ├── figures           <- Generated graphics and figures to be used in reporting
