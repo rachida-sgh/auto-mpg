@@ -26,12 +26,18 @@ def save_data(df, data_state, file_name):
     os.makedirs(data_dir, exist_ok=True)
     df.to_pickle(os.path.join(data_dir, file_name))
     
-def pickle_model(model, file_path):
+def pickle_model(model, model_path):
     model_dir = os.path.join(ROOT_DIR, "model")
     os.makedirs(model_dir, exist_ok=True)
     
-    with open(os.path.join(model_dir, file_path), "wb") as f:
+    with open(os.path.join(model_dir, model_path), "wb") as f:
         pickle.dump(model, f)
+        
+def load_model(model_path):
+    full_model_path = os.path.join(ROOT_DIR, "model", model_path)
+    with open(full_model_path, "rb") as file:
+        model = pickle.load(file)
+    return model
 
 
 def save_fig(fig_path, fig_id, fig_extension="png"):
