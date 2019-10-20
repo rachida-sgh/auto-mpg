@@ -2,6 +2,7 @@ import os
 import urllib
 import matplotlib.pyplot as plt
 import pandas as pd
+import pickle
 
 ROOT_DIR = ".."
 
@@ -24,6 +25,13 @@ def save_data(df, data_state, file_name):
     data_dir = os.path.join(ROOT_DIR, "data", data_state)
     os.makedirs(data_dir, exist_ok=True)
     df.to_pickle(os.path.join(data_dir, file_name))
+    
+def pickle_model(model, file_path):
+    model_dir = os.path.join(ROOT_DIR, "model")
+    os.makedirs(model_dir, exist_ok=True)
+    
+    with open(os.path.join(model_dir, file_path), "wb") as f:
+        pickle.dump(model, f)
 
 
 def save_fig(fig_path, fig_id, fig_extension="png"):
