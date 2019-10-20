@@ -1,6 +1,7 @@
 import os
 import urllib
 import matplotlib.pyplot as plt
+import pandas as pd
 
 ROOT_DIR = ".."
 
@@ -13,10 +14,16 @@ def data_path(*path):
 def download_data(file_name="auto-mpg.data"):
     raw_data_dir = os.path.join(ROOT_DIR, "data", "raw")
     os.makedirs(raw_data_dir, exist_ok=True)
-    file_path = data_path("raw",file_name)
+    file_path = data_path("raw", file_name)
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data"
     urllib.request.urlretrieve(url, file_path)
     print("downloading data to", os.path.join(raw_data_dir, "auto-mpg.data"))
+
+
+def save_data(df, data_state, file_name):
+    data_dir = os.path.join(ROOT_DIR, "data", data_state)
+    os.makedirs(data_dir, exist_ok=True)
+    df.to_pickle(os.path.join(data_dir, file_name))
 
 
 def save_fig(fig_path, fig_id, fig_extension="png"):

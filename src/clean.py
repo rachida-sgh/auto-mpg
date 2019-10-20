@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
-from src.utils import data_path
+from src.utils import data_path, save_data
 
 
 def load_raw_data(file_name="auto-mpg.data"):
@@ -50,11 +50,11 @@ def get_region_names(df):
     df.drop("origin", axis=1, inplace=True)
 
 
-def get_clean_dataset():
+def clean_dataset():
     df = load_raw_data("auto-mpg.data")
     # convert horsepower column (object) it to int
     df["horsepower"] = pd.to_numeric(df["horsepower"], errors="coerce")
     correct_company_names(df)
     get_region_names(df)
-    df.to_pickle(data_path("interim", "data_cleaned.pkl"))
+    save_data(df, "interim", "data_cleaned.pkl")
     return df
