@@ -43,6 +43,10 @@ The __RMSE__ (Root Mean Squared Error) score for the selected model is __2.27 MP
 
 The Jupyter notebooks will walk you through each step of the process. They are intended to be self-explanatory.
 
+## Looking at the notebooks without executing any code
+
+You can browse the notebooks [here](https://nbviewer.jupyter.org/github/rachida-sgh/auto-mpg/blob/master/notebooks/index.ipynb) using Jypyter nbviewer. Github works too but it can be slow. 
+
 ## Running the project
 
 ### Installation
