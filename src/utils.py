@@ -17,7 +17,7 @@ def download_data(file_name="auto-mpg.data"):
     os.makedirs(raw_data_dir, exist_ok=True)
     
     target = os.path.join(raw_data_dir, file_name)
-    print("downloading data to", target)
+    print("downloading data to", os.path.join("..", "data", "raw", file_name))
     urllib.request.urlretrieve(DATASET_URL, target)
 
 
