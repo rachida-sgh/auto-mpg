@@ -99,7 +99,7 @@ The project organisation is based on a minimalistic version of the [cookiecutter
     │   └── raw            <- The original, immutable data dump.
     ├── models             <- Trained and serialized models
     ├── notebooks          <- Project walkthough in the form of sequenced Jupyter notebooks.
-    ├── figures           <- Generated graphics and figures to be used in reporting
+    ├── figures            <- Generated graphics and figures to be used in reporting
     ├── requirements.txt   <- The requirements file
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
