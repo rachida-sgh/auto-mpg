@@ -17,7 +17,7 @@ scikit-learn==0.20.4
 nb_black
 
 # Optional: nice utility to diff Jupyter Notebooks.
-nbdime==1.1.0
+nbdime==1.1.1
 
 # Optional: tqdm displays nice progress bars, ipywidgets for tqdm's notebook support
 tqdm==4.36.1
